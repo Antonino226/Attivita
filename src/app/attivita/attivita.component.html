@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="AttivitaForm" (ngSubmit)="aggiungiAttivita()">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Aggiungi Attività</h5>
+              <div class="form-group">
+                <label for="newData">Inserisci Data</label>
+                <input type="date" id="newData" class="form-control" formControlName="data">
+              </div>
+              <div class="form-group">
+                <label for="newDescrizione">Inserisci Descrizione</label>
+                <input type="text" id="newDescrizione" class="form-control" formControlName="descrizione">
+              </div>
+              <button type="submit" class="btn btn-primary">Conferma</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Elenco Attività</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>DESCRIZIONE</th>
+                  <th>AZIONI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let attivita of attivitaList">
+                  <td>{{ attivita.id }}</td>
+                  <td>{{ attivita.data | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ attivita.descrizione }}</td>
+                  <td><button type="button" class="btn btn-danger" (click)="cancella(attivita)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
