@@ -1,41 +1,38 @@
 import { Component } from '@angular/core';
 import { Attivita } from '../attivita';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-attivita',
   templateUrl: './attivita.component.html',
-  styleUrl: './attivita.component.scss'
+  styleUrls: ['./attivita.component.scss']
 })
 export class AttivitaComponent {
   attivitaList: Attivita[] = [];
-  nuovaAttivita: any;// Inizializza con un oggetto vuoto
-  index:number = 0;
+  nuovaAttivita: any; // Inizializza con un oggetto vuoto
 
   AttivitaForm = this.fb.group({
-    data: [new Date()],
-    descrizione: [''],
+    data: [null, Validators.required],
+    descrizione: ['', Validators.required],
   });
 
   constructor(private fb: FormBuilder) {
     this.caricaAttivitaDaLocalStorage();
   }
 
-  ngOnit(){
-  }
+  ngOnInit() {}
 
   aggiungiAttivita() {
-    const formData = this.AttivitaForm.value;
-    this.nuovaAttivita = {
-      id: this.index, // Genera un ID univoco basato sul timestamp
-      data: formData.data,
-      descrizione: formData.descrizione,
-
-    };
-    this.attivitaList.push(this.nuovaAttivita);
-    this.index++;
-    this.salvaAttivitaInLocalStorage();
-    this.AttivitaForm.reset(); // Resetta il form dopo l'aggiunta dell'attività
+    if (this.AttivitaForm.valid) {
+      const formData = this.AttivitaForm.value;
+      this.nuovaAttivita = {
+        data: formData.data,
+        descrizione: formData.descrizione,
+      };
+      this.attivitaList.push(this.nuovaAttivita);
+      this.salvaAttivitaInLocalStorage();
+      this.AttivitaForm.reset(); // Resetta il form dopo l'aggiunta dell'attività
+    }
   }
 
   salvaAttivitaInLocalStorage() {
@@ -47,6 +44,7 @@ export class AttivitaComponent {
     if (index !== -1) {
       this.attivitaList.splice(index, 1);
       this.salvaAttivitaInLocalStorage();
+      // Controlla se la lista è vuota dopo la rimozione
     }
   }
 
