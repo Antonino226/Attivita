@@ -1,27 +1,26 @@
-# Todo
+## Applicazione di Gestione Attività
+Questa applicazione Angular permette agli utenti di aggiungere, visualizzare e cancellare attività. Le attività vengono memorizzate localmente nel browser utilizzando Local Storage, permettendo di mantenere i dati tra le sessioni dell'utente.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+## Struttura del Progetto
+Componenti: L'applicazione è composta da un singolo componente chiamato AttivitaComponent.
+Template HTML: Contiene un modulo per l'aggiunta di nuove attività e una tabella per visualizzare l'elenco delle attività.
+Stili SCSS: Include stili di base per il layout e la formattazione dei componenti.
 
-## Development server
+## Funzionalità Principali
+Aggiunta di Attività
+Gli utenti possono aggiungere una nuova attività inserendo una data e una descrizione.
+Il modulo di input è validato: entrambi i campi sono obbligatori.
+Dopo l'aggiunta di una nuova attività, il modulo viene resettato.
+## Visualizzazione delle Attività
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Le attività vengono visualizzate in una tabella.
+La tabella mostra un indice (posizione nell'elenco), la data formattata e la descrizione dell'attività.
+Cancellazione delle Attività
 
-## Code scaffolding
+Ogni attività nella tabella ha un pulsante per la cancellazione.
+Quando un'attività viene cancellata, l'elenco si aggiorna automaticamente.
+Se l'elenco diventa vuoto, l'indice viene resettato a 0. Se no, l'indice si basa sull'ID massimo attualmente presente nella lista.
+Memorizzazione Locale
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Le attività vengono salvate nel Local Storage del browser.
+## Le attività vengono caricate dal Local Storage al caricamento dell'applicazione.
